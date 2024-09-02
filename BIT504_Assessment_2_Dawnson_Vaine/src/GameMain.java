@@ -5,6 +5,7 @@ import javax.swing.*;
 
 
 public class GameMain extends JPanel implements MouseListener{
+	
 	//Constants for game 
 	// number of ROWS by COLS cell constants 
 	public static final int ROWS = 3;     
@@ -14,9 +15,11 @@ public class GameMain extends JPanel implements MouseListener{
 	//constants for dimensions used for drawing
 	//cell width and height
 	public static final int CELL_SIZE = 100;
+	
 	//drawing canvas
 	public static final int CANVAS_WIDTH = CELL_SIZE * COLS;
 	public static final int CANVAS_HEIGHT = CELL_SIZE * ROWS;
+	
 	//Noughts and Crosses are displayed inside a cell, with padding from border
 	public static final int CELL_PADDING = CELL_SIZE / 6;    
 	public static final int SYMBOL_SIZE = CELL_SIZE - CELL_PADDING * 2;    
@@ -28,10 +31,13 @@ public class GameMain extends JPanel implements MouseListener{
 	 	 
 	//TODO: create the enumeration for the variable below (GameState currentState)
 	//HINT all of the states you require are shown in the code within GameMain
-	private GameState currentState; 
+	private enum GameState {
+		Playing, Draw, Cross_won, Nought_won
+	}
 	
 	// the current player
-	private Player currentPlayer; 
+	private Player currentPlayer;
+	
 	// for displaying game status message
 	private JLabel statusBar;       
 	
@@ -39,8 +45,7 @@ public class GameMain extends JPanel implements MouseListener{
 	/** Constructor to setup the UI and game components on the panel */
 	public GameMain() {   
 		
-		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.          
-	    
+		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.
 	    
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
@@ -52,6 +57,7 @@ public class GameMain extends JPanel implements MouseListener{
 		//layout of the panel is in border layout
 		setLayout(new BorderLayout());       
 		add(statusBar, BorderLayout.SOUTH);
+		
 		// account for statusBar height in overall height
 		setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT + 30));
 		
@@ -64,9 +70,11 @@ public class GameMain extends JPanel implements MouseListener{
 	}
 	
 	public static void main(String[] args) {
+		
 		    // Run GUI code in Event Dispatch thread for thread safety.
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
+	        	 
 				//create a main window to contain the panel
 				JFrame frame = new JFrame(TITLE);
 				
@@ -83,11 +91,14 @@ public class GameMain extends JPanel implements MouseListener{
 	         }
 		 });
 	}
+	
 	/** Custom painting codes on this JPanel */
 	public void paintComponent(Graphics g) {
+		
 		//fill background and set colour to white
 		super.paintComponent(g);
 		setBackground(Color.WHITE);
+		
 		//ask the game board to paint itself
 		board.paint(g);
 		
