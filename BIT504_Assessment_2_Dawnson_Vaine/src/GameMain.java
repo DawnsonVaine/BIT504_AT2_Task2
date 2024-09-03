@@ -20,7 +20,7 @@ public class GameMain extends JPanel implements MouseListener{
 	public static final int CANVAS_WIDTH = CELL_SIZE * COLS;
 	public static final int CANVAS_HEIGHT = CELL_SIZE * ROWS;
 	
-	//Noughts and Crosses are displayed inside a cell, with padding from border
+	// Noughts and Crosses are displayed inside a cell, with padding from border
 	public static final int CELL_PADDING = CELL_SIZE / 6;    
 	public static final int SYMBOL_SIZE = CELL_SIZE - CELL_PADDING * 2;    
 	public static final int SYMBOL_STROKE_WIDTH = 8;
@@ -29,8 +29,12 @@ public class GameMain extends JPanel implements MouseListener{
 	// the game board 
 	private Board board;
 	 	 
-	//TODO: create the enumeration for the variable below (GameState currentState)
-	//HINT all of the states you require are shown in the code within GameMain
+	/* TODO: create the enumeration for the variable below (GameState currentState)
+	 * HINT all of the states you require are shown in the code within GameMain
+	 *
+	 * Added the states used in the variable below using the states mentioned in the paintComponent Method
+	 * DONE
+	 */
 	private enum GameState {
 		Playing, Draw, Cross_won, Nought_won
 	}
@@ -42,10 +46,14 @@ public class GameMain extends JPanel implements MouseListener{
 	private JLabel statusBar;       
 	
 
-	/** Constructor to setup the UI and game components on the panel */
+	// Constructor to setup the UI and game components on the panel
 	public GameMain() {   
 		
-		// TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.
+		/* TODO: This JPanel fires a MouseEvent on MouseClicked so add required event listener to 'this'.
+		 * 
+		 * DONE
+		 */
+		addMouseListener(this);
 	    
 		// Setup the status bar (JLabel) to display status message       
 		statusBar = new JLabel("         ");       
@@ -54,7 +62,7 @@ public class GameMain extends JPanel implements MouseListener{
 		statusBar.setOpaque(true);       
 		statusBar.setBackground(Color.LIGHT_GRAY);  
 		
-		//layout of the panel is in border layout
+		// layout of the panel is in border layout
 		setLayout(new BorderLayout());       
 		add(statusBar, BorderLayout.SOUTH);
 		
@@ -62,11 +70,17 @@ public class GameMain extends JPanel implements MouseListener{
 		setPreferredSize(new Dimension(CANVAS_WIDTH, CANVAS_HEIGHT + 30));
 		
 		
-		// TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
-
+		/* TODO: Create a new instance of the game "Board"class. HINT check the variables above for the correct name
+		 * 
+		 * DONE
+		 */
+		board = new Board();
 		
-		//TODO: call the method to initialise the game board
-
+		/* TODO: call the method to initialise the game board
+		 * 
+		 * DONE
+		 */
+		initGame();
 	}
 	
 	public static void main(String[] args) {
@@ -75,7 +89,7 @@ public class GameMain extends JPanel implements MouseListener{
 		javax.swing.SwingUtilities.invokeLater(new Runnable() {
 	         public void run() {
 	        	 
-				//create a main window to contain the panel
+				// Create a main window to contain the panel
 				JFrame frame = new JFrame(TITLE);
 				
 				//TODO: create the new GameMain panel and add it to the frame
