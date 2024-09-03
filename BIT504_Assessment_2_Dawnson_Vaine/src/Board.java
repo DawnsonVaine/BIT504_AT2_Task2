@@ -12,8 +12,11 @@ public class Board {
 	/** Constructor to create the game board */
 	public Board() {
 		
-	 //TODO: initialise the cells array using ROWS and COLS constants 
-
+	 /* TODO: initialise the cells array using ROWS and COLS constants
+	  * 
+	  * DONE
+	  */
+		cells = new Cell[GameMain.ROWS][GameMain.COLS]; 
 		
 		for (int row = 0; row < GameMain.ROWS; ++row) {
 			for (int col = 0; col < GameMain.COLS; ++col) {
@@ -26,13 +29,21 @@ public class Board {
 	 /** Return true if it is a draw (i.e., no more EMPTY cells) */ 
 	public boolean isDraw() {
 		 
-		// TODO: Check whether the game has ended in a draw. 
-		// Hint: Use a nested loop (see the constructor for an example). Check whether any of the cells content in the board grid are Player.Empty. If they are, it is not a draw.
-		// Hint: Return false if it is not a draw, return true if there are no empty positions left
-		   
-		
-
-		
+		/* TODO: Check whether the game has ended in a draw. 
+		 * Hint: Use a nested loop (see the constructor for an example). Check whether any of the cells content in the board grid are Player.Empty. If they are, it is not a draw.
+		 * Hint: Return false if it is not a draw, return true if there are no empty positions left
+		 * 
+		 * Using nested loop in constructor as a guide, this checks if the cells are empty or not. Returning false == no draw. Returning true == draw.
+		 * DONE
+		 */
+		for (int row = 0; row < GameMain.ROWS; ++row) {
+			for (int col = 0; col < GameMain.COLS; ++col) {
+				if (cells[row][col].content == Player.Empty) {
+					return false; 								// If there's an empty position, it's not a draw
+				}
+			}
+		}
+		return true; 											// No Empty Positions found, It's a Draw
 	}
 	
 	/** Return true if the current player "thePlayer" has won after making their move  */
