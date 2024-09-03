@@ -232,7 +232,12 @@ public class GameMain extends JPanel implements MouseListener{
 			initGame();            
 		}   
 		
-		//TODO: redraw the graphics on the UI          
+		/* TODO: redraw the graphics on the UI
+		 *
+		 * Requests a redraw of the panel, calling on the paintComponent method. Updating the UI to show the current game state.
+		 * DONE
+		 */
+		repaint();
            
 	}
 		
